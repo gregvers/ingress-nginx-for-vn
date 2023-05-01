@@ -532,8 +532,8 @@ spec:
         image: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20220916-gd32f8c343@sha256:39c5b2e3310dc4264d638ad28d9d1d96c4cbb2b2dcfb52368fe4e3c63f61e10f
         imagePullPolicy: IfNotPresent
         name: create
-        securityContext:
-          allowPrivilegeEscalation: false
+        #securityContext:
+        #  allowPrivilegeEscalation: false
       nodeSelector:
         kubernetes.io/os: linux
       restartPolicy: OnFailure
@@ -635,12 +635,3 @@ webhooks:
     resources:
     - ingresses
   sideEffects: None
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ingress-nginx-admission
-  namespace: ingress-nginx
-  annotations:
-    kubernetes.io/service-account.name: ingress-nginx-admission
-type: kubernetes.io/service-account-token
